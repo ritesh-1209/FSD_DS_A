@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const fruit=["apple","mango","watermelon"];
+        // const modify=["guava",...fruit];
+        // document.write(modify);
+
+        const students = {
+            "student1":[{
+            name:"deepak",
+            branch:"10th",
+            fee:2000},
+            {
+            name:"ritesh",
+            branch:"10th",
+            fee:2000},
+            {
+            name:"rishav",
+            branch:"btech",
+            fee:2000},
+            {
+            name:"shreyash",
+            branch:"bca",
+            fee:2000},
+            {
+            name:"tanmay",
+            branch:"bca",
+            fee:2000}
+        ]};
+       const a= prompt("select branch");
+       const ans = students.student1.filter((i) => (i.branch==a));
+       console.log(ans)
+
+    </script>
+</body>
+</html>
