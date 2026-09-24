@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <select id="city">
+        <option value="">Select City</option>
+    </select>
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="weather"></div>
+    <script>
+        let cities = [
+            "Delhi",
+            "Mumbai",
+            "Bangalore",
+            "Chennai",
+            "Kolkata"
+        ];
+        let citySelect = document.getElementById("city");
+        cities.forEach(city => {
+            let option = document.createElement("option");
+            option.textContent = city;
+            option.value = city;
+            citySelect.appendChild(option);
+        });
+        async function getWeather() {
+    let city = citySelect.value;
+
+    if (city == "") {
+        alert("Select a city");
+        return;
+    }
+
+    let url = "https://api.openweathermap.org/data/2.5/weather?q=${city},IN&appid=9354c81a42c54eccabf4a2e89019e5e7&units=metric";
+
+    let response = await fetch(url);
+    let data = await response.json();
+
+    if (!response.ok) {
+        document.getElementById("weather").innerHTML =
+            `<p>Error: ${data.message}</p>`;
+        return;
+    }
+
+    document.getElementById("weather").innerHTML = `
+        <h2>${data.name}</h2>
+        <p>Temperature: ${data.main.temp} °C</p>
+        <p>Weather: ${data.weather[0].description}</p>
+        <p>Humidity: ${data.main.humidity}%</p>
+        <p>Wind: ${data.wind.speed} m/s</p>
+    `;
+}
+    </script>
+
+</body>
+</html>
